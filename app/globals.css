@@ -3,28 +3,145 @@
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
+/* ===================================
+   GLOBAL THEME (Modern Premium + CLI)
+   =================================== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #0d0f14;     /* deep charcoal */
+  --bg-secondary: #12151b;   /* slightly lighter surface */
+  --surface-light: #ffffff;  /* card surfaces */
+  --text-light: #e7e7e8;     /* body text */
+  --text-muted: #9b9da1;     /* subdued text */
+  --accent: #c9a875;         /* champagne gold */
+  --accent-hover: #d9b985;   /* premium hover */
+  --accent-soft: rgba(201,168,117,0.25);
+  --border: #2a2d33;
+  --cli-grid: rgba(255,255,255,0.03);
 }
 
+/* ===================================
+   Tailwind Theme Overrides
+   =================================== */
+
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* ===================================
+   OS Dark Mode Neutralizer (Standalone)
+   =================================== */
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--bg-primary) !important;
+    --foreground: var(--text-light) !important;
   }
 }
 
+/* ===================================
+   GLOBAL BODY SURFACE + CLI GRID
+   =================================== */
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary) !important;
+  color: var(--text-light);
+  font-family: 'Montserrat', var(--font-sans), sans-serif;
+
+  /* CLI-style background grid */
+  background-image:
+    linear-gradient(var(--cli-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cli-grid) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* ===================================
+   NAVBAR (Premium)
+   =================================== */
+
+.navbar {
+  background: #0f1116;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent);
+}
+
+/* ===================================
+   HERO (Standalone + Premium)
+   =================================== */
+
+.hero,
+.property-hero {
+  background: linear-gradient(180deg, #181b22 0%, #0d0f14 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 0;
+}
+
+/* Premium serif titles */
+.hero-title,
+.section-title,
+.property-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+/* ===================================
+   PROPERTY CARDS (Premium)
+   =================================== */
+
+.property-card {
+  background: var(--surface-light);
+  color: #111;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+}
+
+/* ===================================
+   PROPERTY STATUS BADGE (Premium)
+   =================================== */
+
+.property-status.available {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ===================================
+   BUTTONS (Premium)
+   =================================== */
+
+.btn-inquire,
+.btn-primary {
+  background: var(--accent);
+  color: #111;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.btn-inquire:hover,
+.btn-primary:hover {
+  background: var(--accent-hover);
 }

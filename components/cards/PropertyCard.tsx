@@ -18,40 +18,51 @@ export function PropertyCard({
   slug,
   image,
 }: PropertyCardProps) {
+
+  const normalizedStatus = status?.toLowerCase();
+
   return (
     <Link
       href={`/properties/${slug}`}
       className="group block border rounded-lg overflow-hidden hover:shadow-md transition"
     >
+      {/* IMAGE WRAPPER */}
       <div className="relative aspect-[4/3] w-full overflow-hidden">
-      {status === "Sold" && (
-  <div className="absolute top-2 left-0 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-r-md shadow">
-    SOLD
-  </div>
-)}
 
+        {/* STATUS BADGES */}
+        {normalizedStatus === "sold" && (
+          <div className="absolute top-2 left-0 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-r-md shadow">
+            SOLD
+          </div>
+        )}
+
+        {normalizedStatus === "pre-selling" && (
+          <div className="absolute top-2 left-0 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-r-md shadow">
+            PRE-SELLING
+          </div>
+        )}
+
+        {normalizedStatus === "rfo" && (
+          <div className="absolute top-2 left-0 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-r-md shadow">
+            RFO
+          </div>
+        )}
+
+        {/* IMAGE */}
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover transition group-hover:scale-105"
+          className={`object-cover transition group-hover:scale-105 ${
+            normalizedStatus === "sold" ? "grayscale opacity-75" : ""
+          }`}
         />
       </div>
 
+      {/* CARD CONTENT */}
       <div className="p-4 space-y-1">
-        <h3 className="font-semibold text-lg">{{status === "Pre-Selling" && (
-  <span className="inline-block text-xs bg-blue-50 text-blue-600 font-medium px-2 py-0.5 rounded">
-    Pre-Selling
-  </span>
-)}
-
-{status === "RFO" && (
-  <span className="inline-block text-xs bg-green-50 text-green-600 font-medium px-2 py-0.5 rounded">
-    Ready for Occupancy
-  </span>
-)}
-}</h3>
         <p className="text-sm text-gray-600">{location}</p>
+        <h3 className="font-semibold text-lg">{title}</h3>
         <p className="font-medium text-primary">{price}</p>
       </div>
     </Link>

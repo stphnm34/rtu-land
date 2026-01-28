@@ -1,10 +1,21 @@
+import { Hero } from "@/components/home/Hero";
+import { FeaturedProjects } from "@/components/home/FeaturedProjects";
+import { WhyChoose } from "@/components/home/WhyChoose";
+import { DeveloperShowcase } from "@/components/home/DeveloperShowcase";
+import { Stats } from "@/components/home/Stats";
+import { CTA } from "@/components/home/CTA";
+import { Contact } from "@/components/home/Contact";
+
 export default function HomePage() {
   return (
-    <div className="container mx-auto py-12">
-      <h1 className="text-3xl font-semibold">Home Page</h1>
-      <p className="mt-4 text-gray-600">
-        Welcome to the RTU Land real estate platform prototype.
-      </p>
+    <div className="space-y-24">
+      <Hero />
+      <FeaturedProjects />
+      <WhyChoose />
+      <DeveloperShowcase />
+      <Stats />
+      <CTA />
+      <Contact />
     </div>
   );
 }
